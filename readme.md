@@ -1,13 +1,18 @@
 # 版本说明  
 - Python       Version  3.6.8 |Anaconda, Inc.| (default, Feb 21 2019, 18:30:04) [MSC v.1916 64 bit (AMD64)]  
 
-- tensorflow  Version  2.0.0-beta0  
+- tensorflow  Version  2.0.0-beta0 
+  tensorflow_gpu-2.0.0b0-cp36-cp36m-win_amd64.whl 
 
 - tf.keras       Version  2.2.4-tf  
 
 - selenium    Version  3.141.0  
 
 - 系统：Windows7 旗舰版  
+
+- GPU  
+  cuda_10.0.130_411.31_win10.exe
+  GTX 960
 
 # 网盘位置  
 - 包含图片数据  
