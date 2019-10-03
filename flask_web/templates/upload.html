@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+	 <form enctype='multipart/form-data' action="http://127.0.0.1:5000/upload_picture" method="post">
+        <input type="file" name='pic'>
+        <input type="submit">
+    </form >
+    <p>
+        中文预测值：{{chinesePredict}}
+    </p>
+    <p>
+        图片预测值：{{picturePredict}}
+    </p>
+
+     <img  src="{{ url_for('static', filename='src_image.png',_t=val1)}}" alt="None">
+
+</body>
+</html>
