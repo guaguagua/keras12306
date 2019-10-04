@@ -3,8 +3,11 @@ import time
 import base64
 import hashlib
 
+
 def getPicture():
     driver = webdriver.Chrome()
+    driver.implicitly_wait(20)
+    driver.maximize_window()
 
     curUrl = 'https://kyfw.12306.cn/otn/resources/login.html'
     driver.get(curUrl)
@@ -35,7 +38,7 @@ def getPicture():
         driver.find_element_by_xpath("//div[@class='lgcode-refresh']").click()
         while_count += 1
         print('while_count:' + str(while_count))
-        if 0 == (while_count % 3):
+        if 0 == (while_count % 3): # 下载3张图片后等久一点，不然验证码图片中都是加了噪声的 2中分类
             # driver.get(curUrl)
             # mailLoginBUtton = driver.find_element_by_xpath("/html[1]/body[1]/div[2]/div[2]/ul[1]/li[2]")
             # mailLoginBUtton.click()
@@ -43,7 +46,7 @@ def getPicture():
         else:
             time.sleep(2)
 
-        while True:
+        while True:  # 等待验证码显示
             image = driver.find_element_by_xpath("//img[@id='J-loginImg']")
             if image.is_displayed():
                 break
@@ -55,7 +58,7 @@ def getPicture():
         var text  = image.getAttribute("src");
         //console.log(text);
         return text'''
-        img_str = driver.execute_script(js)
+        img_str = driver.execute_script(js)  # 使用js获取验证图片base64 编码数据
         img_str = img_str.split(",")[-1]  # 删除前面的 “data:image/jpeg;base64,”
         img_str = img_str.replace("%0A", '\n')  # 将"%0A"替换为换行符
         img_data = base64.b64decode(img_str)  # b64decode 解码
@@ -69,7 +72,7 @@ def getPicture():
 
         imageMd5List.append(fmd5)
         # print(imageMd5List)
-        with open('./picture/Mydownload/%s.png' % (count,), 'wb') as fout:
+        with open('./originPicture/%s.png' % (count,), 'wb') as fout:
             fout.write(img_data)
             fout.close()
             count += 1

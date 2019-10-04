@@ -123,7 +123,7 @@ def renamePicture(start):
     print('rename end...')
 
 
-# renamePicture()
+# renamePicture(0)
 
 def removeRepeatAndBadPicture():
     fmd5List = []
@@ -203,6 +203,6 @@ def curChinesePicture():  # 剪切中文
 
 
 if __name__ == '__main__':
-    pass
-    # curChinesePicture()
-    # getAllSmallPicture()
+    removeRepeatAndBadPicture()
+    curChinesePicture()
+    getAllSmallPicture()
