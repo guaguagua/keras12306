@@ -71,8 +71,8 @@ class Login12306(Base12306):
     def __init__(self, drive, account, password):
         self.driver = drive  # webdriver.Chrome()
         self.driver.maximize_window()
-        print(self.driver.get_window_size())
-        print(self.driver.get_window_position())
+        #print(self.driver.get_window_size())
+        #print(self.driver.get_window_position())
 
         self.class_dic = {'中国结': 0, '仪表盘': 1, '公交卡': 2, '冰箱': 3, '创可贴': 4, '刺绣': 5, '剪纸': 6, '印章': 7, '卷尺': 8,
                           '双面胶': 9, '口哨': 10, '啤酒': 11, '安全帽': 12, '开瓶器': 13, '手掌印': 14, '打字机': 15, '护腕': 16,
@@ -86,9 +86,10 @@ class Login12306(Base12306):
                           '锦旗': 73, '雨靴': 74, '鞭炮': 75, '风铃': 76, '高压锅': 77, '黑板': 78, '龙舟': 79}
 
         self.class_dic_new = {value: key for key, value in self.class_dic.items()}
-
-        self.modelPicture = load_model(r'mode12306_picture_class.h5')  # 加载图片预测模型
-        self.modelChinese = load_model(r'mode12306_chinese_class.h5')  # 加载中文预测模型
+        self.path = os.path.split(os.path.realpath(__file__))[0]  # E:\Spider\gitHub\autoLogin
+        print(self.path + r'\model\mode12306_picture_class.h5')
+        self.modelPicture = load_model(self.path + r'\model\mode12306_picture_class.h5')  # 加载图片预测模型
+        self.modelChinese = load_model(self.path + r'\model\mode12306_chinese_class.h5')  # 加载中文预测模型
 
         self.LogUrl = 'https://kyfw.12306.cn/otn/resources/login.html'  # 登录页面
         self.LogPassUrl = 'https://kyfw.12306.cn/otn/view/index.html'  # 登录成功后页面
